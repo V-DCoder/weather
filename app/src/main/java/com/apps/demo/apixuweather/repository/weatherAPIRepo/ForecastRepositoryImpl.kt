@@ -12,6 +12,6 @@ class ForecastRepositoryImpl
 
     override fun getTodaysForecast(): Single<ForecastResponse> {
 
-        return service.getCurrentForecast("","",1)
+        return service.getCurrentForecast("Mumbai")
     }
 }
