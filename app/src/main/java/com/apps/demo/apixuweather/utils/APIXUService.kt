@@ -10,4 +10,6 @@ interface APIXUService {
     @GET("forecast.json")
     fun getCurrentForecast(@Query("key") key: String, @Query("q") city: String, @Query("days") days: Int): Single<ForecastResponse>
 
+
+
 }
