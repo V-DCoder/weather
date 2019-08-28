@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">APIXU Weather</string>
+
+    <string name="error_message">Something \nwent wrong \nat our end!</string>
+    <string name="retry">Retry</string>
+    <string name="celsius">%.2f C</string>
+    <string name="current_temperature">%.0fº</string>
 </resources>

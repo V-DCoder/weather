@@ -1,6 +1,6 @@
 package com.apps.demo.apixuweather.utils
 
-import com.gojeck.apps.whertherly.model.ForecastResponse
+import com.apps.demo.apixuweather.model.ForecastResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

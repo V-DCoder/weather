@@ -22,10 +22,10 @@ class AppModule(val application: WeatherForecastApplication) {
         return LocationManager(context)
     }
 
-//    @Provides
-//    fun provideViewModel(locationManager: LocationManager, repository: ForecastRepository): TodaysForecastViewModel {
-//        return TodaysForecastViewModel(locationManager,repository)
-//    }
+    @Provides
+    fun provideViewModel(locationManager: LocationManager, repository: ForecastRepository): TodaysForecastViewModel {
+        return TodaysForecastViewModel(locationManager,repository)
+    }
 
 
 }

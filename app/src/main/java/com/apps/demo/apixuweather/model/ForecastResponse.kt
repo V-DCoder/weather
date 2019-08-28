@@ -1,4 +1,4 @@
-package com.gojeck.apps.whertherly.model
+package com.apps.demo.apixuweather.model
 import com.google.gson.annotations.SerializedName
 
 

@@ -3,4 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="background_white">#F5F6F7</color>
+    <color name="retry_button_text">#FFFFFF</color>
+    <color name="text_black">#2A2A2A</color>
+    <color name="text_blue">#556799</color>
+    <color name="retry_button_background">#4A4A4A</color>
+    <color name="fail_background">#E85959</color>
 </resources>
