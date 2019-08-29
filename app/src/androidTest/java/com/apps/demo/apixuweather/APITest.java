@@ -25,5 +25,8 @@ public class APITest {
 //        QuoteOfTheDayConstants.BASE_URL = server.url("/").toString();
 //    }
 
+    //https://proandroiddev.com/how-to-better-unit-testing-42a956e005d6
+    //https://riggaroo.co.za/retrofit-2-mocking-http-responses/
+//    https://medium.com/capital-one-tech/rxjava2-android-mvvm-lifecycle-app-structure-with-retrofit-2-cf903849f49e
 
 }
