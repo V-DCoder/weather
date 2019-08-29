@@ -1,7 +1,7 @@
 package com.apps.demo.apixuweather.viewmodel
 
+import android.location.Address
 import android.location.Location
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,9 +21,10 @@ class TodaysForecastViewModel @Inject constructor(
     private var compositeDisposable = CompositeDisposable()
     private var errorFound: MutableLiveData<Boolean> = MutableLiveData()
     private var showProgress: MutableLiveData<Boolean> = MutableLiveData()
-    private var locationForecast: MutableLiveData<ForecastResponse> = MutableLiveData()
+    private var locationForecast: MutableLiveData<Pair<ForecastResponse?, Address?>> = MutableLiveData()
+    private var address: Address? = null
 
-    fun getLocationForecastLiveData(): LiveData<ForecastResponse> {
+    fun getLocationForecastLiveData(): MutableLiveData<Pair<ForecastResponse?, Address?>> {
         return locationForecast
     }
 
@@ -36,6 +37,14 @@ class TodaysForecastViewModel @Inject constructor(
     }
 
     fun fetchForecast() {
+        if (forecastNotAvailable()) {
+            fetchNewForecast()
+        }
+
+    }
+
+    private fun fetchNewForecast() {
+        showProgress.postValue(true)
         compositeDisposable.add(locationManager.getLocation().subscribe({
             onLocationFound(it)
         }, {
@@ -43,25 +52,32 @@ class TodaysForecastViewModel @Inject constructor(
         }))
     }
 
-    private fun locationFetchFailed() {
-
+    private fun forecastNotAvailable(): Boolean {
+        return locationForecast.value == null || locationForecast.value?.first == null
     }
 
-    private fun onLocationFound(location: Location?) {
+    private fun locationFetchFailed() {
+        showProgress.postValue(false)
+        errorFound.postValue(true)
+    }
 
-        fetchForecastForLocation(location)
+    private fun onLocationFound(locationPair: Pair<Location?, Address?>) {
+        address = locationPair.second
+        fetchForecastForLocation(locationPair.first)
     }
 
     private fun fetchForecastForLocation(location: Location?) {
-//        ${location?.latitude},${location?.longitude}
+
         compositeDisposable.add(
-            repository.getTodaysForecast("19.0990,73.0098").subscribeOn(Schedulers.io())
+            repository.getTodaysForecast("${location?.latitude},${location?.longitude}").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: ForecastResponse ->
-                    Log.w("response", response.location.name)
+                    locationForecast.postValue(Pair(response, address))
+                    showProgress.postValue(false)
 
                 }, {
-                    Log.w("response", it.message)
+                    errorFound.postValue(true)
+                    showProgress.postValue(false)
                     it.printStackTrace()
                 })
         )

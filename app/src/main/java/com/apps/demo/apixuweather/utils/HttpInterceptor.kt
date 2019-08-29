@@ -10,7 +10,7 @@ class HttpInterceptor : Interceptor {
         val oldRequest = chain.request()
         val updatedURL = oldRequest.url().newBuilder()
             .addEncodedQueryParameter("key", BuildConfig.APIXU_SECRET)
-            .addEncodedQueryParameter("days","1")
+            .addEncodedQueryParameter("days","4")
             .build()
         return chain.proceed(oldRequest.newBuilder().url(updatedURL).build())
     }
