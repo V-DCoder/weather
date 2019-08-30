@@ -1,5 +1,7 @@
-package com.apps.demo.apixuweather.di.modules
+package com.apps.demo.apixuweather.di
 
+import com.apps.demo.apixuweather.di.modules.OBSERVER_ON
+import com.apps.demo.apixuweather.di.modules.SUBCRIBER_ON
 import com.apps.demo.apixuweather.repository.RepositoryImpl
 import com.apps.demo.apixuweather.repository.weatherAPIRepo.ForecastRepository
 import com.apps.demo.apixuweather.repository.weatherAPIRepo.ForecastRepositoryImpl
@@ -21,7 +23,7 @@ import javax.inject.Singleton
 
 
 @Module
-class RepositoryModule {
+class RepositoryModuleTest(private val baseUrl: String) {
 
     @Provides
     fun provideRepository(forecastRepository: ForecastRepository): RepositoryImpl {
@@ -82,14 +84,11 @@ class RepositoryModule {
         return Retrofit.Builder()
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl(getBaseUrl())
+            .baseUrl(baseUrl)
             .client(okHttpClient)
             .build()
     }
 
-    protected fun getBaseUrl(): String {
-        return "https://api.apixu.com/v1/"
-    }
 
     @Provides
     @Singleton

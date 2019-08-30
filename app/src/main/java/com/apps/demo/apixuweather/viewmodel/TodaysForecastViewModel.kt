@@ -69,8 +69,7 @@ class TodaysForecastViewModel @Inject constructor(
     private fun fetchForecastForLocation(location: Location?) {
 
         compositeDisposable.add(
-            repository.getTodaysForecast("${location?.latitude},${location?.longitude}").subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            repository.getTodaysForecast("${location?.latitude},${location?.longitude}")
                 .subscribe({ response: ForecastResponse ->
                     locationForecast.postValue(Pair(response, address))
                     showProgress.postValue(false)
