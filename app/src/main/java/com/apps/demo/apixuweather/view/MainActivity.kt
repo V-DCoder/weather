@@ -56,7 +56,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun onForecastAvailable(forecastToday: Pair<ForecastResponse?, Address?>) {
         error_container.visibility = View.GONE
+        forecastContainer.visibility = View.VISIBLE
         progress.visibility = View.GONE
+        forecast.visibility = View.VISIBLE
         currentTemperature.text = getString(R.string.current_temperature, forecastToday.first?.current?.tempC)
         currentCity.text = forecastToday.second?.locality
         val adapter = ForecastAdapter()
@@ -83,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun onErrorUI() {
         error_container.visibility = View.VISIBLE
+        forecastContainer.visibility = View.GONE
     }
 
     private fun onRetry() {

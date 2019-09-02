@@ -8,9 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.apps.demo.apixuweather.location.LocationManager
 import com.apps.demo.apixuweather.model.ForecastResponse
 import com.apps.demo.apixuweather.repository.weatherAPIRepo.ForecastRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class TodaysForecastViewModel @Inject constructor(
@@ -61,9 +59,15 @@ class TodaysForecastViewModel @Inject constructor(
         errorFound.postValue(true)
     }
 
-    private fun onLocationFound(locationPair: Pair<Location?, Address?>) {
-        address = locationPair.second
-        fetchForecastForLocation(locationPair.first)
+    private fun onLocationFound(locationNotification: LocationManager.LocationNotification) {
+        locationNotification.error?.let {
+            locationFetchFailed()
+        }
+        locationNotification.location?.let {
+            address = it.second
+            fetchForecastForLocation(it.first)
+        }
+
     }
 
     private fun fetchForecastForLocation(location: Location?) {

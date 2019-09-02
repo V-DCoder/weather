@@ -4,51 +4,16 @@
                 android:layout_height="match_parent"
 >
 
+
+
+    <include layout="@layout/forecast_container"
+             android:id="@+id/forecastContainer"
+    />
+
     <include layout="@layout/error_layout"
              android:id="@+id/error_container"
              android:visibility="gone"
     />
-
-    <include layout="@layout/forecast_container"
-             android:id="@+id/error_container"
-    />
-
-    <!--<TextView-->
-    <!--android:id="@+id/currentTemperature"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginTop="56dp"-->
-    <!--android:fontFamily="sans-serif-black"-->
-    <!--android:textColor="@color/text_black"-->
-    <!--android:textSize="96sp"-->
-    <!--tools:text="34"/>-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/currentCity"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@id/currentTemperature"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginBottom="62sp"-->
-    <!--android:fontFamily="sans-serif-thin"-->
-    <!--android:textColor="@color/text_blue"-->
-    <!--android:textSize="36sp"-->
-    <!--tools:text="Bangalore"/>-->
-
-
-    <!--<androidx.recyclerview.widget.RecyclerView-->
-    <!--android:id="@+id/forecast"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_below="@id/currentCity"-->
-    <!--android:background="@color/retry_button_text"-->
-    <!--android:paddingLeft="16dp"-->
-    <!--android:paddingTop="16dp"-->
-    <!--android:paddingRight="16dp"-->
-    <!--android:visibility="gone"-->
-    <!--app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>-->
-
     <ProgressBar
             android:id="@+id/progress"
             android:layout_width="96dp"

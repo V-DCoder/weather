@@ -12,15 +12,16 @@
             android:background="@color/background_white"
     >
 
-        <include layout="@layout/error_layout"
-                 android:id="@+id/error_container"
+        <include layout="@layout/forecast_container"
+                 android:id="@+id/forecastContainer"
                  android:visibility="gone"
         />
-
-        <include layout="@layout/forecast_container"
+        <include layout="@layout/error_layout"
                  android:id="@+id/error_container"
                  android:visibility="visible"
         />
+
+
 
 
         <ProgressBar
